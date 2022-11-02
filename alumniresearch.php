@@ -60,6 +60,7 @@
         <thead class="text-center">
             <tr>
             <th scope="col">Daftar&nbsp;Nama&nbsp;Alumni</th>
+            <th scope="col">Nis&nbsp;Alumni</th>
             <th scope="col">Tahun&nbsp;Masuk</th>
             <th scope="col">Tahun&nbsp;Keluar</th>
             <th scope="col">Hasil&nbsp;Laporan&nbsp;PKL&nbsp;Alumni</th>
@@ -67,27 +68,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <th scope="row">Ignasius Kevin Nainggolan</th>
-            <td class="text-center">2010</td>
-            <td class="text-center">2013</td>
-            <td><button disabled="disabeld"class="btn btn-success btn-block btn-sm">BAIK</button></td>
-            <td>Sudah&nbsp;Bekerja</td>
+        <tr>
+        <?php
+            require "function.php";
+            $no = 1;
+            $query = mysqli_query($conn, 'SELECT * FROM tbl_rekam_alumni');
+            while ($data = mysqli_fetch_array($query)) {
+            ?>
+            <td><?php echo $data['namaalumni'] ?></td>
+            <td><?php echo $data['nis_alumni'] ?></td>
+            <td><?php echo $data['tahunmasuk'] ?></td>
+                <td><?php echo $data['tahunkeluar'] ?></td>
+            <td><button disabled="disabeld"class="btn btn-warning btn-block btn-sm"><?php echo $data['hasillaporanalumni'] ?></button></td>
+            <td><button disabled="disabeld"class="btn btn-warning btn-block btn-sm"><?php echo $data['statusalumni'] ?></button></td>
             </tr>
-            <tr>
-            <th scope="row">B</th>
-            <td class="text-center">2010</td>
-            <td class="text-center">2013</td>
-            <td><button disabled="disabeld"class="btn btn-danger btn-block btn-sm">TIDAK&nbsp;BAIK</button></td>
-            <td>Belum&nbsp;Bekerja</td>
-            </tr>
-            <tr>
-            <th scope="row">C</th>
-            <td class="text-center">2010</td>
-            <td class="text-center">2013</td>
-            <td><button disabled="disabeld"class="btn btn-success btn-block btn-sm">BAIK</button></td>
-            <td>Sudah&nbsp;Bekerja</td>
-            </tr>
+        <?php } ?>
         </tbody>
         </table>
     </div>

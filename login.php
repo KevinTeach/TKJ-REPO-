@@ -31,7 +31,9 @@ foreach ($list_user as $key => $registered_user) {
 
             $_SESSION['logins'] = true;
             $_SESSION['usernames'] =  $user['usernames'];
-            $_SESSION['message']  = 'Berhasil login ke dalam sistem.';
+            echo "<script>
+            alert('Selamat Datang Admin!');
+   </script>";
 
             header("Location: admin/daftarsiswa.php");
             break;

@@ -1,9 +1,8 @@
 <?php
 session_start();
-require "../function/addsiswa.php";
-session_start();
+require "../function/addalumni.php";
 if (isset($_POST["post"])) {
-    if (postsiswa($_POST) > 0) {
+    if (postalumni($_POST) > 0) {
         echo "<script>
                    alert('Upload Data Berhasil');
                    document.location.href = '../admin/daftaralumni.php';
@@ -35,7 +34,7 @@ if (isset($_POST["post"])) {
 <div class="sidenav">
   <a href="../admin/daftaralumni.php" class="btn btn-success">Daftar Alumni</a>
   <a href="../admin/daftarsiswa.php" class="btn btn-success">Daftar Siswa</a>
-  <a href="../admin/logout.php" class="btn btn-success">Keluar</a>
+  <a href="../logout.php" class="btn btn-success">Keluar</a>
 </div>
 
 <div class="container">
@@ -65,6 +64,21 @@ if (isset($_POST["post"])) {
             </select>
         </div>
         <div class="form-group">
+            <label for="nisalumni">Nis&nbsp;Alumni</label>
+            <select name="nis_alumni" style="width:160px;" class="form-control">
+                <?php
+                include "function.php";
+                //query menampilkan nama siswa ke dalam combobox
+                $query    =mysqli_query($conn, "SELECT * FROM tbl_siswa GROUP BY nis ORDER BY nis");
+                while ($data = mysqli_fetch_array($query)) {
+                ?>
+                <option value="<?=$data['nis'];?>" class="form-control"><?php echo $data['nis'];?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="thnmasuk">Tahun&nbsp;Masuk</label>
             <input type="date" class="form-control" name="tahunmasuk">
         </div>
@@ -74,14 +88,14 @@ if (isset($_POST["post"])) {
         </div>
         <div class="form-group">
             <label for="hallaporan">Hasil&nbsp;Laporan&nbsp;PKL</label>
-            <input type="text" class="form-control" name="hallaporan">
+            <input type="text" class="form-control" name="hasillaporanalumni">
         </div>
         <div class="form-group">
-            <label for="sttsiswa">Status&nbsp;Siswa</label>
-            <input type="text" class="form-control" name="statussiswa">
+            <label for="sttsiswa">Status&nbsp;Alumni</label>
+            <input type="text" class="form-control" name="statusalumni">
         </div>
         <div class="float-right">
-            <button type="submit" name="post"class="btn btn-sm btn-success text-capitalize">daftar&nbsp;siswa</button>
+            <button type="submit" name="post"class="btn btn-sm btn-success text-capitalize">Daftar&nbsp;Alumni</button>
         </div>
         </div>
      </div>

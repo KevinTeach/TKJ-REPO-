@@ -60,6 +60,7 @@
         <thead class="text-center">
             <tr>
             <th scope="col">Daftar&nbsp;Nama&nbsp;Siswa</th>
+            <th scope="col">Nis&nbsp;Siswa</th>
             <th scope="col">Tahun&nbsp;Masuk</th>
             <th scope="col">Tahun&nbsp;Keluar</th>
             <th scope="col">Hasil&nbsp;Laporan&nbsp;PKL&nbsp;Siswa</th>
@@ -68,26 +69,20 @@
         </thead>
         <tbody>
             <tr>
-            <th scope="row">Ignasius Kevin Nainggolan</th>
-            <td class="text-center">2010</td>
-            <td class="text-center">2013</td>
-            <td><button disabled="disabeld"class="btn btn-warning btn-block btn-sm">Belum Melaksanakan PKL</button></td>
-            <td>Belum&nbsp;Bekerja</td>
+            <?php
+            require "function.php";
+            $no = 1;
+            $query = mysqli_query($conn, 'SELECT * FROM tbl_siswa');
+            while ($data = mysqli_fetch_array($query)) {
+            ?>
+            <td><?php echo $data['namasiswa'] ?></td>
+            <td><?php echo $data['nis'] ?></td>
+            <td><?php echo $data['tahunmasuk'] ?></td>
+                <td><?php echo $data['tahunkeluar'] ?></td>
+            <td><button disabled="disabeld"class="btn btn-warning btn-block btn-sm"><?php echo $data['hallaporan'] ?></button></td>
+            <td><button disabled="disabeld"class="btn btn-warning btn-block btn-sm"><?php echo $data['statussiswa'] ?></button></td>
             </tr>
-            <tr>
-            <th scope="row">B</th>
-            <td class="text-center">2010</td>
-            <td class="text-center">2013</td>
-            <td><button disabled="disabeld"class="btn btn-warning btn-block btn-sm">Belum Melaksanakan PKL</button></td>
-            <td>Belum&nbsp;Bekerja</td>
-            </tr>
-            <tr>
-            <th scope="row">C</th>
-            <td class="text-center">2010</td>
-            <td class="text-center">2013</td>
-            <td><button disabled="disabeld"class="btn btn-warning btn-block btn-sm">Belum Melaksanakan PKL</button></td>
-            <td>Berhenti&nbsp;Sekolah</td>
-            </tr>
+        <?php } ?>
         </tbody>
         </table>
     </div>
