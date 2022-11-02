@@ -29,7 +29,7 @@ foreach ($list_user as $key => $registered_user) {
 
         if ($registered_user['passwords'] == $user['passwords']) {
 
-            $_SESSION['login'] = true;
+            $_SESSION['logins'] = true;
             $_SESSION['usernames'] =  $user['usernames'];
             $_SESSION['message']  = 'Berhasil login ke dalam sistem.';
 
@@ -40,9 +40,13 @@ foreach ($list_user as $key => $registered_user) {
             $not_found = true;
         }
     } else {
-        $_SESSION['error'] = 'Password anda salah';
+        echo "<script>
+                    alert('Username dan Password Salah!');
+                   alert('Masukkan Username dan Password!');
+                   document.location.href = 'index.php';
+           </script>";
     }
 }
 if ($not_found == true) {
-    header("Location: ../admin/index.php");
+    header("Location: index.php");
 }

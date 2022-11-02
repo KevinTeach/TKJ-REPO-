@@ -68,6 +68,10 @@ if (isset($_POST["post"])) {
             <label for="sttsiswa">Status&nbsp;Siswa</label>
             <input type="text" class="form-control" name="statussiswa">
         </div>
+        <div class="form-group">
+            <label for="nissiswa">Nis&nbsp;Siswa</label>
+            <input type="number" class="form-control" name="nis">
+        </div>
         <div class="float-right">
             <button type="submit" name="post"class="btn btn-sm btn-success text-capitalize">daftar&nbsp;siswa</button>
         </div>

@@ -1,11 +1,12 @@
 <?php
+session_start();
 require "../function/addsiswa.php";
 session_start();
 if (isset($_POST["post"])) {
     if (postsiswa($_POST) > 0) {
         echo "<script>
                    alert('Upload Data Berhasil');
-                   document.location.href = '../admin/daftarsiswa.php';
+                   document.location.href = '../admin/daftaralumni.php';
                </script>";
     }else{
         echo "<script>
@@ -49,8 +50,19 @@ if (isset($_POST["post"])) {
         </div>
         <div class="card-body">
             <div class="form-group">
-            <label for="nasis">Nama&nbsp;Siswa</label>
-            <input type="text" class="form-control" name="namasiswa">
+            <label for="nasis">Nama&nbsp;Siswa Alumni</label>
+            <select name="namaalumni" style="width:160px;" class="form-control">
+                <?php
+                include "function.php";
+                //query menampilkan nama siswa ke dalam combobox
+                $query    =mysqli_query($conn, "SELECT * FROM tbl_siswa GROUP BY namasiswa ORDER BY namasiswa");
+                while ($data = mysqli_fetch_array($query)) {
+                ?>
+                <option value="<?=$data['namasiswa'];?>" class="form-control"><?php echo $data['namasiswa'];?></option>
+                <?php
+                }
+                ?>
+            </select>
         </div>
         <div class="form-group">
             <label for="thnmasuk">Tahun&nbsp;Masuk</label>
