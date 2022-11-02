@@ -49,8 +49,9 @@
 <div class="container-fluid bg-font">
     <br>
     <div class="float-right">
-        <form class="form-inline my-2 my-lg-0 mt-2">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0 mt-2" method="GET" action="alumniresearch.php">
+        <input class="form-control mr-sm-2" type="text" name="cari"
+        value="<?php if (isset($_GET['cari'])) {echo $_GET['cari'];}?>">
         <button class="btn bg-orange my-2 my-sm-0" type="submit">Search</button>
         </form>
     <br>
@@ -71,9 +72,15 @@
         <tr>
         <?php
             require "function.php";
+            if (isset($_GET['cari'])) {
+                $pencarian = $_GET['cari'];
+                $query =  "SELECT * FROM tbl_rekam_alumni WHERE nis_alumni like '%".$pencarian."%'";
+            }else{
+                $query =  'SELECT * FROM tbl_rekam_alumni';
+            }
             $no = 1;
-            $query = mysqli_query($conn, 'SELECT * FROM tbl_rekam_alumni');
-            while ($data = mysqli_fetch_array($query)) {
+            $tampil = mysqli_query($conn, $query);
+            while ($data = mysqli_fetch_array($tampil)) {
             ?>
             <td><?php echo $data['namaalumni'] ?></td>
             <td><?php echo $data['nis_alumni'] ?></td>
